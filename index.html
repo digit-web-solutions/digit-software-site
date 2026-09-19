@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digit — Build. Automate. Scale.</title>
+<meta name="description" content="Digit is an AI-native company that builds and operates digital businesses and internal automation systems, spanning digital commerce, digital media, and AI infrastructure." />
+<meta name="robots" content="index, follow" />
+<link rel="icon" href="data:," />
+<style>
+  :root {
+    --blue: #014AAD;
+    --pink: #ED548F;
+    --purple: #A348AA;
+    --lavender: #ECEEFF;
+    --ink: #05060A;
+    --panel: #0D0F16;
+    --panel-border: rgba(236, 238, 255, 0.10);
+    --text: #F3F4FA;
+    --text-muted: rgba(243, 244, 250, 0.68);
+    --max-width: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(5, 6, 10, 0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+
+  .brand img { height: 30px; width: auto; display: block; }
+
+  nav.links {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  nav.links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  nav.links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    padding: 120px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 480px;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(1, 74, 173, 0.35), transparent 55%),
+      radial-gradient(circle at 78% 10%, rgba(163, 72, 170, 0.30), transparent 55%),
+      radial-gradient(circle at 55% 60%, rgba(237, 84, 143, 0.22), transparent 55%);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    background: rgba(163, 72, 170, 0.16);
+    border: 1px solid rgba(163, 72, 170, 0.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 7vw, 76px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    margin: 0 0 24px;
+    max-width: 16ch;
+    background: linear-gradient(100deg, var(--blue) 0%, var(--purple) 52%, var(--pink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 0 40px;
+  }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary {
+    background: linear-gradient(100deg, var(--blue), var(--purple) 60%, var(--pink));
+    color: #fff;
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  /* Section shell */
+  section { padding: 88px 0; border-top: 1px solid var(--panel-border); }
+
+  .section-head { max-width: 640px; margin: 0 0 48px; }
+
+  .kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin: 0 0 12px;
+  }
+
+  h2 {
+    font-size: clamp(28px, 3.6vw, 38px);
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    font-weight: 800;
+  }
+
+  .section-head p {
+    color: var(--text-muted);
+    font-size: 16.5px;
+    margin: 0;
+  }
+
+  /* What we build */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .card .dot {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .dot-blue { background: linear-gradient(135deg, var(--blue), #3B7BE0); }
+  .dot-purple { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+  .dot-pink { background: linear-gradient(135deg, var(--pink), var(--purple)); }
+
+  .card h3 {
+    font-size: 18px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+
+  .card p {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* About */
+  .about p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin: 0 0 18px;
+  }
+
+  .about strong { color: var(--text); }
+
+  /* Contact */
+  .contact-panel {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    padding: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .contact-panel h2 { margin-bottom: 8px; }
+  .contact-panel p { margin: 0; color: var(--text-muted); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--panel-border);
+    padding: 32px 0;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .footer-row a { text-decoration: none; }
+  .footer-row a:hover { color: var(--text); }
+
+  @media (max-width: 760px) {
+    nav.links { display: none; }
+    .grid { grid-template-columns: 1fr; }
+    .contact-panel { padding: 32px; }
+    .hero { padding: 88px 0 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="assets/digit-logo.svg" alt="Digit logo" />
+      <span>Digit</span>
+    </a>
+    <nav class="links">
+      <a href="#what-we-build">What We Build</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-top: none; padding-top: 120px;">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Digit</span>
+      <h1>Build. Automate. Scale.</h1>
+      <p class="lede">
+        Digit is an AI-native company: we build and operate digital businesses and the
+        internal automation systems that run them, combining software engineering,
+        applied AI, and disciplined operating practice.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="#what-we-build">What we build</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="what-we-build">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">What We Build</p>
+        <h2>Digital businesses, built and operated end to end</h2>
+        <p>Digit's work spans a small number of focused areas rather than a broad, generic
+          product line. Each area is built deliberately, with real operating discipline
+          behind it.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="dot dot-blue"></div>
+          <h3>Digital Commerce</h3>
+          <p>Digital products and e-commerce operations, researched, built, and
+            quality-checked before they ever reach a customer.</p>
+        </div>
+        <div class="card">
+          <div class="dot dot-purple"></div>
+          <h3>Digital Media</h3>
+          <p>Content and media properties developed with the same research-first,
+            measured approach as our commerce work.</p>
+        </div>
+        <div class="card">
+          <div class="dot dot-pink"></div>
+          <h3>Automation &amp; AI Infrastructure</h3>
+          <p>The internal governance, tooling, and automation systems that let Digit's
+            businesses run reliably — built in-house, not bought off the shelf.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">About Digit</p>
+        <h2>An AI-native operator, not a legacy agency</h2>
+      </div>
+      <p>
+        Digit is directed by <strong>Justin Goncalves</strong> and built around AI-assisted
+        engineering: software agents handle much of the day-to-day building, testing, and
+        operating work, under explicit human review and approval. Digit is early-stage and
+        growing deliberately — we would rather be accurate about where we are today than
+        overstate it.
+      </p>
+      <p>
+        Digit's earlier incarnation, in 2024, operated as a web development agency. Digit
+        today is a different kind of company: an operator of its own digital businesses,
+        built on internal automation and applied AI rather than client services.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel">
+        <div>
+          <h2>Contact</h2>
+          <p>For business, partnership, or platform-related inquiries, reach us directly.</p>
+        </div>
+        <a class="btn btn-primary" href="mailto:justin@digitweb.solutions">justin@digitweb.solutions</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>&copy; <span id="year">2026</span> Digit. All rights reserved.</span>
+    <a href="mailto:justin@digitweb.solutions">justin@digitweb.solutions</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
