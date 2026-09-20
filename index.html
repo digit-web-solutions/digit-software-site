@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Digit — Build companies that can operate</title>
-<meta name="description" content="Digit is an AI-native technology company. We build businesses alongside the operating systems that run them, combining real operations with software that coordinates work, enforces governance, and learns from results." />
+<title>Digit — Engineering the infrastructure for autonomous business</title>
+<meta name="description" content="Digit is an AI infrastructure and engineering company. We build autonomous software systems and intelligent operational technology, and apply that engineering across a portfolio of digital businesses we operate." />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#05060A" />
 <link rel="canonical" href="https://digit.software/" />
@@ -17,15 +17,15 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Digit" />
-<meta property="og:title" content="Digit — Build companies that can operate" />
-<meta property="og:description" content="An AI-native technology company building businesses alongside the operating systems that run them." />
+<meta property="og:title" content="Digit — Engineering the infrastructure for autonomous business" />
+<meta property="og:description" content="An AI infrastructure and engineering company, applying that engineering across a portfolio of digital businesses." />
 <meta property="og:url" content="https://digit.software/" />
 <meta property="og:image" content="https://digit.software/assets/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Digit — Build companies that can operate" />
-<meta name="twitter:description" content="An AI-native technology company building businesses alongside the operating systems that run them." />
+<meta name="twitter:title" content="Digit — Engineering the infrastructure for autonomous business" />
+<meta name="twitter:description" content="An AI infrastructure and engineering company, applying that engineering across a portfolio of digital businesses." />
 <meta name="twitter:image" content="https://digit.software/assets/og-image.png" />
 
 <script type="application/ld+json">
@@ -55,6 +55,7 @@
     --text-faint: rgba(243, 244, 250, 0.42);
     --max-width: 1120px;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --spectrum: linear-gradient(100deg, var(--blue-bright) 0%, var(--purple) 55%, var(--pink) 100%);
   }
 
   * { box-sizing: border-box; }
@@ -87,20 +88,14 @@
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 24px;
+    position: relative;
+    z-index: 1;
   }
 
   :focus-visible {
     outline: 2px solid var(--blue-bright);
     outline-offset: 3px;
     border-radius: 4px;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px; height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
   }
 
   .skip-link {
@@ -118,6 +113,13 @@
   }
   .skip-link:focus { top: 16px; }
 
+  .grad-text {
+    background: var(--spectrum);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   /* Header */
   header {
     position: sticky;
@@ -133,20 +135,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0;
+    padding: 15px 0;
   }
 
   .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 11px;
     text-decoration: none;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 19px;
     letter-spacing: -0.01em;
   }
 
-  .brand svg { height: 26px; width: 26px; display: block; flex-shrink: 0; }
+  .brand svg { height: 30px; width: 30px; display: block; flex-shrink: 0; filter: drop-shadow(0 0 14px rgba(163, 72, 170, 0.35)); }
 
   nav.links {
     display: flex;
@@ -160,9 +162,23 @@
     text-decoration: none;
     color: var(--text-muted);
     transition: color 0.15s ease;
+    position: relative;
+    padding-bottom: 3px;
+  }
+
+  nav.links a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: 0;
+    height: 2px;
+    background: var(--spectrum);
+    border-radius: 2px;
+    transition: right 0.2s var(--ease);
   }
 
   nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
+  nav.links a:hover::after, nav.links a:focus-visible::after { right: 0; }
 
   .nav-cta {
     display: inline-flex;
@@ -178,7 +194,7 @@
     transition: border-color 0.15s ease, background 0.15s ease;
     white-space: nowrap;
   }
-  .nav-cta:hover, .nav-cta:focus-visible { border-color: var(--blue-bright); background: rgba(59, 123, 224, 0.10); }
+  .nav-cta:hover, .nav-cta:focus-visible { border-color: var(--purple); background: rgba(163, 72, 170, 0.12); }
 
   .nav-toggle {
     display: none;
@@ -195,10 +211,23 @@
 
   /* Hero */
   .hero {
-    padding: 132px 0 108px;
+    padding: 128px 0 104px;
     position: relative;
     overflow: hidden;
     border-top: none;
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: -10% -10% -10% -10%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(620px circle at 82% 28%, rgba(1, 74, 173, 0.55), transparent 60%),
+      radial-gradient(560px circle at 68% 62%, rgba(163, 72, 170, 0.42), transparent 62%),
+      radial-gradient(420px circle at 92% 78%, rgba(237, 84, 143, 0.30), transparent 60%),
+      radial-gradient(500px circle at 8% 92%, rgba(1, 74, 173, 0.16), transparent 65%);
+    filter: blur(6px);
   }
 
   .hero-field {
@@ -206,7 +235,6 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.9;
   }
 
   .hero-field svg { width: 100%; height: 100%; }
@@ -215,7 +243,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, var(--ink) 96%);
+    background: linear-gradient(180deg, transparent 44%, var(--ink) 97%);
     pointer-events: none;
   }
 
@@ -224,7 +252,7 @@
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
     font-size: 12.5px;
     font-weight: 700;
     letter-spacing: 0.10em;
@@ -237,23 +265,35 @@
     width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--blue-bright);
-    box-shadow: 0 0 0 3px rgba(59, 123, 224, 0.18);
+    box-shadow: 0 0 0 3px rgba(59, 123, 224, 0.22);
   }
 
+  .kicker {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin: 0 0 14px;
+  }
+  .kicker-blue { color: var(--blue-bright); }
+  .kicker-purple { color: var(--purple); }
+
   h1 {
-    font-size: clamp(38px, 6.4vw, 72px);
-    line-height: 1.05;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1.06;
     letter-spacing: -0.025em;
     font-weight: 700;
     margin: 0 0 26px;
-    max-width: 15ch;
+    max-width: 18ch;
     color: var(--text);
   }
 
   .lede {
     font-size: clamp(17px, 1.8vw, 19.5px);
     color: var(--text-muted);
-    max-width: 620px;
+    max-width: 640px;
     margin: 0 0 40px;
   }
 
@@ -268,40 +308,34 @@
     font-size: 15px;
     padding: 14px 26px;
     border-radius: 10px;
-    transition: transform 0.15s var(--ease), opacity 0.15s ease, border-color 0.15s ease;
+    transition: transform 0.15s var(--ease), box-shadow 0.2s ease, border-color 0.15s ease, background 0.2s ease;
   }
 
   .btn:hover { transform: translateY(-1px); }
 
   .btn-primary {
-    background: var(--text);
-    color: var(--ink);
+    background: linear-gradient(100deg, var(--blue) 0%, var(--purple) 100%);
+    color: #fff;
+    box-shadow: 0 4px 24px -8px rgba(1, 74, 173, 0.5);
   }
-  .btn-primary:hover { opacity: 0.92; }
+  .btn-primary:hover { box-shadow: 0 10px 34px -8px rgba(163, 72, 170, 0.6); }
 
   .btn-ghost {
     border: 1px solid var(--panel-border-strong);
     color: var(--text);
     background: rgba(255, 255, 255, 0.02);
   }
-  .btn-ghost:hover { border-color: var(--blue-bright); }
+  .btn-ghost:hover { border-color: var(--purple); background: rgba(163, 72, 170, 0.08); }
 
   /* Section shell */
-  section { padding: 100px 0; border-top: 1px solid var(--panel-border); position: relative; }
+  section { padding: 100px 0; border-top: 1px solid var(--panel-border); position: relative; overflow: hidden; }
 
-  .section-head { max-width: 660px; margin: 0 0 56px; }
+  .section-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 
-  .kicker {
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: var(--pink);
-    margin: 0 0 14px;
-  }
+  .section-head { max-width: 680px; margin: 0 0 56px; }
 
   h2 {
-    font-size: clamp(27px, 3.4vw, 36px);
+    font-size: clamp(27px, 3.4vw, 37px);
     letter-spacing: -0.015em;
     margin: 0 0 16px;
     font-weight: 700;
@@ -320,23 +354,39 @@
   }
   .reveal.is-visible { opacity: 1; transform: none; }
 
-  /* What we build */
-  .duo {
+  /* Card grids (What We Build / Companies) */
+  .trio, .grid3 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
-  .duo-card {
+  .build-card {
     background: linear-gradient(160deg, var(--panel), var(--panel-2));
     border: 1px solid var(--panel-border);
     border-radius: 18px;
-    padding: 36px;
+    padding: 34px;
     position: relative;
     overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s var(--ease), box-shadow 0.25s ease;
   }
+  .build-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, var(--blue-bright));
+  }
+  .build-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--panel-border-strong);
+    box-shadow: 0 22px 48px -24px var(--accent-glow, rgba(59,123,224,0.45));
+  }
+  .build-card.accent-blue { --accent: linear-gradient(90deg, var(--blue), var(--blue-bright)); --accent-glow: rgba(59,123,224,0.4); }
+  .build-card.accent-purple { --accent: linear-gradient(90deg, var(--blue-bright), var(--purple)); --accent-glow: rgba(163,72,170,0.4); }
+  .build-card.accent-pink { --accent: linear-gradient(90deg, var(--purple), var(--pink)); --accent-glow: rgba(237,84,143,0.4); }
 
-  .duo-card .tag {
+  .build-card .tag {
     display: inline-block;
     font-size: 11.5px;
     font-weight: 800;
@@ -344,78 +394,53 @@
     text-transform: uppercase;
     padding: 5px 11px;
     border-radius: 999px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
+  .build-card.accent-blue .tag { color: var(--blue-bright); background: rgba(59, 123, 224, 0.14); }
+  .build-card.accent-purple .tag { color: var(--purple); background: rgba(163, 72, 170, 0.16); }
+  .build-card.accent-pink .tag { color: var(--pink); background: rgba(237, 84, 143, 0.14); }
 
-  .duo-card.businesses .tag { color: var(--blue-bright); background: rgba(59, 123, 224, 0.14); }
-  .duo-card.systems .tag { color: var(--pink); background: rgba(237, 84, 143, 0.14); }
-
-  .duo-card h3 { font-size: 21px; margin: 0 0 12px; font-weight: 700; letter-spacing: -0.01em; }
-  .duo-card p { font-size: 15.5px; color: var(--text-muted); margin: 0; }
-
-  .duo-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-faint);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
+  .build-card h3 { font-size: 20px; margin: 0 0 12px; font-weight: 700; letter-spacing: -0.01em; }
+  .build-card p { font-size: 15px; color: var(--text-muted); margin: 0; }
 
   /* Companies */
-  .grid3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
   .card {
     background: var(--panel);
     border: 1px solid var(--panel-border);
     border-radius: 16px;
     padding: 30px;
-    transition: border-color 0.2s ease, transform 0.2s var(--ease);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s var(--ease), box-shadow 0.25s ease;
   }
-  .card:hover { border-color: var(--panel-border-strong); transform: translateY(-2px); }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, var(--blue-bright));
+  }
+  .card:hover {
+    border-color: var(--panel-border-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 22px 48px -26px var(--accent-glow, rgba(59,123,224,0.4));
+  }
+  .card.accent-blue { --accent: linear-gradient(90deg, var(--blue), var(--blue-bright)); --accent-glow: rgba(59,123,224,0.4); }
+  .card.accent-purple { --accent: linear-gradient(90deg, var(--blue-bright), var(--purple)); --accent-glow: rgba(163,72,170,0.4); }
+  .card.accent-pink { --accent: linear-gradient(90deg, var(--purple), var(--pink)); --accent-glow: rgba(237,84,143,0.4); }
 
   .card .dot {
     width: 36px;
     height: 36px;
     border-radius: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
+    background: var(--accent);
   }
 
-  .dot-blue { background: linear-gradient(135deg, var(--blue), var(--blue-bright)); }
-  .dot-purple { background: linear-gradient(135deg, var(--purple), var(--pink)); }
-  .dot-pink { background: linear-gradient(135deg, var(--pink), var(--purple)); }
-
-  .card h3 { font-size: 18px; margin: 0 0 6px; font-weight: 700; }
-
-  .status-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-  .status-chip {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    border: 1px solid var(--panel-border-strong);
-    border-radius: 999px;
-    padding: 3px 10px;
-  }
-
+  .card h3 { font-size: 17.5px; margin: 0 0 8px; font-weight: 700; }
   .card p { font-size: 14.5px; color: var(--text-muted); margin: 0; }
 
-  .card .initiatives {
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid var(--panel-border);
-    font-size: 13px;
-    color: var(--text-faint);
-  }
-  .card .initiatives strong { color: var(--text-muted); font-weight: 600; }
-
-  /* Operating model */
+  /* System Architecture (operating loop) */
   .loop {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -425,6 +450,7 @@
   .loop-step {
     background: var(--panel);
     border: 1px solid var(--panel-border);
+    border-top: 2px solid var(--step-color, var(--blue-bright));
     border-radius: 14px;
     padding: 22px 16px;
     text-align: left;
@@ -434,7 +460,7 @@
   .loop-step .n {
     font-size: 11px;
     font-weight: 800;
-    color: var(--text-faint);
+    color: var(--step-color, var(--text-faint));
     letter-spacing: 0.08em;
     margin-bottom: 10px;
   }
@@ -443,14 +469,21 @@
   .loop-step p { font-size: 12.5px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
   .loop-note {
-    margin-top: 28px;
-    font-size: 15px;
-    color: var(--text-muted);
-    max-width: 640px;
+    margin-top: 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
   }
-  .loop-note strong { color: var(--text); font-weight: 700; }
+  .loop-note .emph {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .loop-note p { margin: 0; font-size: 15px; color: var(--text-muted); max-width: 560px; }
 
-  /* Governance */
+  /* Control Architecture */
   .gov-panel {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -460,9 +493,15 @@
 
   .gov-copy p { font-size: 16px; color: var(--text-muted); margin: 0 0 18px; }
   .gov-copy strong { color: var(--text); }
+  .gov-copy .emph-line {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 24px;
+  }
 
   .gov-diagram {
-    background: var(--panel);
+    background: linear-gradient(160deg, var(--panel), var(--panel-2));
     border: 1px solid var(--panel-border);
     border-radius: 18px;
     padding: 32px;
@@ -477,15 +516,16 @@
   .gov-row + .gov-row { border-top: 1px solid var(--panel-border); }
 
   .gov-icon {
-    width: 30px; height: 30px;
-    border-radius: 8px;
+    width: 32px; height: 32px;
+    border-radius: 9px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .gov-icon.ok { background: rgba(59, 123, 224, 0.16); }
-  .gov-icon.gate { background: rgba(237, 84, 143, 0.16); }
+  .gov-icon.blue { background: rgba(59, 123, 224, 0.16); }
+  .gov-icon.pink { background: rgba(237, 84, 143, 0.16); }
+  .gov-icon.purple { background: rgba(163, 72, 170, 0.18); }
 
   .gov-row h4 { font-size: 14.5px; margin: 0 0 4px; font-weight: 700; }
   .gov-row p { font-size: 13.5px; color: var(--text-muted); margin: 0; }
@@ -493,16 +533,35 @@
   /* About */
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 48px;
+    align-items: start;
   }
   .about-grid p { font-size: 16.5px; color: var(--text-muted); margin: 0 0 18px; }
   .about-grid strong { color: var(--text); }
+  .about-emph {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 22px !important;
+    padding-top: 22px;
+    border-top: 1px solid var(--panel-border);
+  }
 
-  .stat-list { display: flex; flex-direction: column; gap: 22px; }
-  .stat { border-left: 2px solid var(--panel-border-strong); padding-left: 18px; }
-  .stat .label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
-  .stat .value { font-size: 15.5px; color: var(--text); }
+  .about-panel {
+    background: linear-gradient(160deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    padding: 32px;
+  }
+  .about-panel .row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; }
+  .about-panel .row + .row { border-top: 1px solid var(--panel-border); }
+  .about-panel .chip {
+    width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 7px; flex-shrink: 0;
+  }
+  .about-panel .row p { margin: 0; font-size: 14.5px; color: var(--text-muted); }
+  .about-panel .row strong { color: var(--text); font-size: 14.5px; }
 
   /* Contact */
   .contact-panel {
@@ -521,7 +580,7 @@
   .contact-panel p { margin: 0; color: var(--text-muted); font-size: 16px; }
 
   /* Footer */
-  footer { border-top: 1px solid var(--panel-border); padding: 40px 0; }
+  footer { border-top: 1px solid var(--panel-border); padding: 40px 0; position: relative; overflow: hidden; }
 
   .footer-row {
     display: flex;
@@ -532,15 +591,19 @@
   }
 
   .footer-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; }
-  .footer-brand svg { height: 20px; width: 20px; }
+  .footer-brand svg { height: 22px; width: 22px; }
 
   .footer-meta { font-size: 13px; color: var(--text-faint); }
   .footer-links { display: flex; gap: 20px; font-size: 13px; }
   .footer-links a { text-decoration: none; color: var(--text-faint); transition: color 0.15s ease; }
-  .footer-links a:hover { color: var(--text-muted); }
+  .footer-links a:hover { color: var(--purple); }
+
+  @media (max-width: 900px) {
+    #companies .grid3 { grid-template-columns: repeat(2, 1fr); }
+  }
 
   @media (max-width: 860px) {
-    .duo, .about-grid { grid-template-columns: 1fr; }
+    .trio, .about-grid { grid-template-columns: 1fr; }
     .gov-panel { grid-template-columns: 1fr; }
     .loop { grid-template-columns: repeat(3, 1fr); }
   }
@@ -549,7 +612,7 @@
     nav.links { display: none; }
     .nav-toggle { display: inline-flex; }
     .nav-cta { display: none; }
-    .grid3 { grid-template-columns: 1fr; }
+    .grid3, #companies .grid3 { grid-template-columns: 1fr; }
     .loop { grid-template-columns: repeat(2, 1fr); }
     .hero { padding: 104px 0 72px; }
     section { padding: 72px 0; }
@@ -587,10 +650,10 @@
       <span>Digit</span>
     </a>
     <nav class="links" aria-label="Primary">
+      <a href="#about">About</a>
       <a href="#what-we-build">What We Build</a>
       <a href="#companies">Companies</a>
       <a href="#approach">Approach</a>
-      <a href="#about">About</a>
     </nav>
     <a class="nav-cta" href="#contact">Contact</a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -598,200 +661,230 @@
     </button>
   </div>
   <div class="wrap mobile-panel" id="mobileMenu">
+    <a href="#about">About</a>
     <a href="#what-we-build">What We Build</a>
     <a href="#companies">Companies</a>
     <a href="#approach">Approach</a>
-    <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
 
 <main id="main">
   <section class="hero" id="top">
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-field" aria-hidden="true" id="heroField"></div>
     <div class="wrap hero-inner">
-      <span class="eyebrow"><span class="pulse"></span>Digit</span>
-      <h1>Build companies that can operate.</h1>
+      <span class="eyebrow"><span class="pulse"></span>AI Infrastructure + Engineering</span>
+      <h1>Engineering the infrastructure for <span class="grad-text">autonomous business.</span></h1>
       <p class="lede">
-        Digit is an AI-native technology company. We build businesses alongside the
-        operating systems that run them — software that coordinates work, enforces
-        governance, and learns from what actually happens.
+        Digit builds AI infrastructure, autonomous software systems, and the technology
+        behind increasingly intelligent operations. We apply that engineering across a
+        portfolio of digital businesses we operate.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#what-we-build">Explore Digit</a>
-        <a class="btn btn-ghost" href="#approach">How it works</a>
+        <a class="btn btn-primary" href="#about">Explore Digit</a>
+        <a class="btn btn-ghost" href="#approach">How We Build</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-glow" aria-hidden="true" style="background:radial-gradient(560px circle at 12% 10%, rgba(1,74,173,0.16), transparent 60%);"></div>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker kicker-blue">About Digit</span>
+        <h2>An AI engineering company built around intelligent systems.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>
+            Digit is an AI infrastructure and engineering company building software
+            designed to understand, coordinate, execute, and learn across complex
+            digital operations.
+          </p>
+          <p>
+            Our work spans autonomous infrastructure, intelligent applications, workflow
+            systems, and the software architecture required to connect AI with
+            real-world execution.
+          </p>
+          <p>
+            Alongside our engineering work, Digit operates a portfolio of digital
+            businesses across software, commerce, media, marketing, and web technology.
+            These companies create direct operating environments for the systems we build.
+          </p>
+          <p class="about-emph">We don't just build intelligent software. We build the infrastructure for it to operate.</p>
+        </div>
+        <div class="about-panel reveal">
+          <div class="row"><span class="chip" style="background:var(--blue-bright)"></span><p><strong>Engineering core</strong><br/>AI infrastructure &amp; autonomous systems</p></div>
+          <div class="row"><span class="chip" style="background:var(--purple)"></span><p><strong>Applied through</strong><br/>A portfolio of operating businesses</p></div>
+          <div class="row"><span class="chip" style="background:var(--pink)"></span><p><strong>Built on</strong><br/>Control, verification, and continuity</p></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="what-we-build">
+    <div class="section-glow" aria-hidden="true" style="background:radial-gradient(600px circle at 88% 20%, rgba(163,72,170,0.16), transparent 60%);"></div>
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="kicker">What We Build</p>
-        <h2>Two things, built to reinforce each other</h2>
-        <p>Most companies buy software. Digit builds the businesses and the systems
-          that run them side by side, so each one makes the other better.</p>
+        <span class="kicker kicker-blue">What We Build</span>
+        <h2>Engineering intelligence into operations.</h2>
+        <p>Digit develops the software and infrastructure required to move AI from
+          isolated intelligence into real operational environments.</p>
       </div>
-      <div class="duo">
-        <div class="duo-card businesses reveal">
-          <span class="tag">Businesses</span>
-          <h3>Real operations, not demos</h3>
-          <p>Digit builds and runs actual commercial products — starting in digital
-            commerce and media — through research, execution, and honest measurement.
-            Every business is a real attempt to create value, not a proof of concept.</p>
+      <div class="trio">
+        <div class="build-card accent-blue reveal">
+          <span class="tag">AI Infrastructure</span>
+          <h3>Infrastructure for intelligent systems.</h3>
+          <p>The foundational software that connects models, organizational context,
+            tools, services, memory, and execution into systems capable of sustained
+            operation.</p>
         </div>
-        <div class="duo-card systems reveal">
-          <span class="tag">Systems</span>
-          <h3>The infrastructure to coordinate them</h3>
-          <p>Alongside the businesses, Digit builds the software layer that tracks
-            organizational knowledge, routes work to the right place, executes through
-            controlled connections, and keeps a human in charge of what matters.</p>
+        <div class="build-card accent-purple reveal">
+          <span class="tag">Autonomous Systems</span>
+          <h3>Software that carries work forward.</h3>
+          <p>Intelligent systems designed to understand objectives, coordinate
+            workflows, make bounded decisions, execute actions, and adapt as
+            conditions change.</p>
+        </div>
+        <div class="build-card accent-pink reveal">
+          <span class="tag">Software Engineering</span>
+          <h3>Applications built for real operations.</h3>
+          <p>Purpose-built software, platforms, integrations, and operational systems
+            engineered around reliability, control, and real-world use.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section id="companies">
+    <div class="section-glow" aria-hidden="true" style="background:radial-gradient(680px circle at 15% 60%, rgba(237,84,143,0.13), transparent 62%);"></div>
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="kicker">Companies</p>
-        <h2>Where Digit operates today</h2>
-        <p>A small number of focused areas, each built deliberately. Not every area
-          is commercially live — we'd rather be accurate about where things stand
-          than overstate them.</p>
+        <span class="kicker kicker-purple">Our Companies</span>
+        <h2>Technology across a portfolio of businesses.</h2>
+        <p>Digit operates across multiple digital industries, applying shared
+          engineering capabilities to businesses with distinct products, markets, and
+          operating models.</p>
       </div>
       <div class="grid3">
-        <div class="card reveal">
-          <div class="dot dot-blue"></div>
-          <div class="status-row"><span class="status-chip">Building</span></div>
+        <div class="card accent-blue reveal">
+          <div class="dot"></div>
           <h3>Digit E-Commerce</h3>
-          <p>Digital commerce businesses, built to test increasingly autonomous
-            product operations — from research through fulfillment.</p>
-          <div class="initiatives"><strong>Includes:</strong> DigitSupplyCo</div>
+          <p>Digital commerce businesses combining product development, intelligent
+            operations, and technology-driven distribution.</p>
         </div>
-        <div class="card reveal">
-          <div class="dot dot-purple"></div>
-          <div class="status-row"><span class="status-chip">Building</span></div>
-          <h3>Digit AIC</h3>
-          <p>AI-native media and digital talent — content and creative properties
-            developed with the same research-first, measured approach as our
-            commerce work.</p>
-          <div class="initiatives"><strong>Includes:</strong> Digit Media, Digit Virtual Talent</div>
+        <div class="card accent-purple reveal">
+          <div class="dot"></div>
+          <h3>Digit Media</h3>
+          <p>Digital media businesses built around scalable content systems,
+            technology-enabled production, and modern distribution.</p>
         </div>
-        <div class="card reveal">
-          <div class="dot dot-pink"></div>
-          <div class="status-row"><span class="status-chip">Research &amp; development</span></div>
+        <div class="card accent-pink reveal">
+          <div class="dot"></div>
+          <h3>Digit Virtual Media</h3>
+          <p>Virtual media ventures exploring digital identity, intelligent content,
+            entertainment, and new forms of audience engagement.</p>
+        </div>
+        <div class="card accent-blue reveal">
+          <div class="dot"></div>
           <h3>Digit Marketing</h3>
-          <p>Technology-driven customer acquisition and growth systems, evolved
-            from Digit's earlier services work.</p>
+          <p>Technology-driven marketing focused on customer acquisition, automation,
+            digital growth, and measurable performance.</p>
+        </div>
+        <div class="card accent-purple reveal">
+          <div class="dot"></div>
+          <h3>Digit Web Solutions</h3>
+          <p>Web engineering and digital infrastructure spanning websites, online
+            platforms, domains, hosting, and connected business systems.</p>
+        </div>
+        <div class="card accent-pink reveal">
+          <div class="dot"></div>
+          <h3>Digit Software Solutions</h3>
+          <p>Software engineering focused on intelligent applications, operational
+            platforms, automation, and autonomous infrastructure.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section id="approach">
+    <div class="section-glow" aria-hidden="true" style="background:radial-gradient(620px circle at 85% 15%, rgba(1,74,173,0.16), transparent 60%);"></div>
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="kicker">Operating Model</p>
-        <h2>An operating loop, not a one-off automation</h2>
-        <p>Every business Digit runs moves through the same loop — understanding
-          what's true, deciding what to do, and learning from what happens.</p>
+        <span class="kicker kicker-purple">System Architecture</span>
+        <h2>Intelligence connected to execution.</h2>
+        <p>Autonomous software requires more than intelligence. It needs a continuous
+          architecture for understanding context, making decisions, coordinating work,
+          executing actions, verifying outcomes, and retaining what it learns.</p>
       </div>
       <div class="loop" role="list">
-        <div class="loop-step reveal" role="listitem"><div class="n">01</div><h4>Understand</h4><p>What's actually true right now.</p></div>
-        <div class="loop-step reveal" role="listitem"><div class="n">02</div><h4>Decide</h4><p>What should happen next, and why.</p></div>
-        <div class="loop-step reveal" role="listitem"><div class="n">03</div><h4>Coordinate</h4><p>Route work to the right place.</p></div>
-        <div class="loop-step reveal" role="listitem"><div class="n">04</div><h4>Execute</h4><p>Act through controlled connections.</p></div>
-        <div class="loop-step reveal" role="listitem"><div class="n">05</div><h4>Verify</h4><p>Confirm what actually happened.</p></div>
-        <div class="loop-step reveal" role="listitem"><div class="n">06</div><h4>Learn</h4><p>Turn results into knowledge.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--blue-bright)"><div class="n">01</div><h4>Understand</h4><p>Build an accurate picture of the current environment.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--blue-bright)"><div class="n">02</div><h4>Decide</h4><p>Determine the appropriate next action.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--purple)"><div class="n">03</div><h4>Coordinate</h4><p>Connect objectives, systems, and responsibilities.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--purple)"><div class="n">04</div><h4>Execute</h4><p>Act through integrated software and infrastructure.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--pink)"><div class="n">05</div><h4>Verify</h4><p>Measure the result against the intended outcome.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--pink)"><div class="n">06</div><h4>Learn</h4><p>Turn experience into persistent knowledge.</p></div>
       </div>
-      <p class="loop-note reveal"><strong>Autonomy without control is not an operating model.</strong>
-        Routine work can move through this loop with real independence. Anything
-        consequential still requires a human decision — see below.</p>
+      <div class="loop-note reveal">
+        <span class="emph grad-text">From intelligence to operation.</span>
+        <p>Digit engineers the connective infrastructure between reasoning and
+          real-world execution, allowing intelligent systems to carry work forward
+          with continuity and control.</p>
+      </div>
     </div>
   </section>
 
-  <section id="governance">
+  <section id="control">
+    <div class="section-glow" aria-hidden="true" style="background:radial-gradient(560px circle at 90% 70%, rgba(237,84,143,0.14), transparent 60%);"></div>
     <div class="wrap">
       <div class="gov-panel">
         <div class="gov-copy reveal">
-          <p class="kicker">Human Control</p>
-          <h2>Autonomy, with accountability</h2>
-          <p>Software can increasingly do the work. It should not increasingly
-            decide, on its own, what's worth doing. Digit's systems are built to
-            know the difference between <strong>being capable</strong> of an
-            action and <strong>being authorized</strong> to take it.</p>
-          <p>Routine operations move fast, inside clear limits. Anything
-            consequential — spending, publishing, external commitments — routes to
-            an explicit human decision, every time. That boundary doesn't loosen
-            as the systems improve; it's the point of building them this way.</p>
+          <span class="kicker">Control Architecture</span>
+          <h2>Autonomy, engineered with boundaries.</h2>
+          <p>Greater autonomy requires better control.</p>
+          <p>Digit designs systems with explicit boundaries between technical
+            capability, operational authority, and execution. Software can move
+            quickly within defined scope while consequential actions remain subject
+            to the controls appropriate to them.</p>
+          <p>This makes autonomy more useful, more predictable, and more capable of
+            operating in real environments.</p>
+          <p class="emph-line">Autonomy is not the absence of control. It is the product of well-engineered control.</p>
         </div>
         <div class="gov-diagram reveal" aria-hidden="true">
           <div class="gov-row">
-            <div class="gov-icon ok">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="#3B7BE0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="gov-icon blue">
+              <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="#3B7BE0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div><h4>Capable</h4><p>The system has a technical path to act.</p></div>
+            <div><h4>Capability</h4><p>The system has the technical ability to act.</p></div>
           </div>
           <div class="gov-row">
-            <div class="gov-icon gate">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="3" y="6" width="8" height="6" rx="1" stroke="#ED548F" stroke-width="1.6"/><path d="M5 6V4.5a2 2 0 0 1 4 0V6" stroke="#ED548F" stroke-width="1.6"/></svg>
+            <div class="gov-icon pink">
+              <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><rect x="3" y="6" width="8" height="6" rx="1" stroke="#ED548F" stroke-width="1.6"/><path d="M5 6V4.5a2 2 0 0 1 4 0V6" stroke="#ED548F" stroke-width="1.6"/></svg>
             </div>
-            <div><h4>Authorized</h4><p>A human has explicitly allowed this action.</p></div>
+            <div><h4>Authority</h4><p>The action falls within its permitted scope.</p></div>
           </div>
           <div class="gov-row">
-            <div class="gov-icon ok">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="#3B7BE0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="gov-icon purple">
+              <svg width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="#A348AA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div><h4>Only then: act</h4><p>Capability alone is never treated as permission.</p></div>
+            <div><h4>Execution</h4><p>The system proceeds when capability and authority align.</p></div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="about">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="kicker">About Digit</p>
-        <h2>Building the system by operating through it</h2>
-      </div>
-      <div class="about-grid">
-        <div class="reveal">
-          <p>
-            Digit began in 2024 as a web development agency. Today it's a
-            different kind of company: an operator of its own digital businesses,
-            built on applied AI and internal automation rather than client services.
-          </p>
-          <p>
-            Digit is directed by <strong>Justin Goncalves</strong>. Software agents
-            handle much of the day-to-day building, testing, and operating work,
-            under explicit human review — Digit's own businesses are the proving
-            ground for the operating model itself.
-          </p>
-          <p>
-            Digit is early-stage and growing deliberately. We'd rather be accurate
-            about where we are today than overstate it.
-          </p>
-        </div>
-        <div class="stat-list reveal">
-          <div class="stat"><div class="label">Founded</div><div class="value">2024, as Digit Web Solutions</div></div>
-          <div class="stat"><div class="label">Today</div><div class="value">An AI-native operator of digital businesses</div></div>
-          <div class="stat"><div class="label">Directed by</div><div class="value">Justin Goncalves</div></div>
-          <div class="stat"><div class="label">Stage</div><div class="value">Early — building deliberately</div></div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="contact">
+    <div class="section-glow" aria-hidden="true" style="background:radial-gradient(500px circle at 50% 0%, rgba(163,72,170,0.14), transparent 60%);"></div>
     <div class="wrap">
       <div class="contact-panel reveal">
         <div>
-          <h2>Contact</h2>
-          <p>For business, partnership, or platform-related inquiries, reach us directly.</p>
+          <span class="kicker">Contact</span>
+          <h2>Let's build what comes next.</h2>
+          <p>For technology, engineering, business, and partnership inquiries:</p>
         </div>
-        <a class="btn btn-primary" href="mailto:justin@digitweb.solutions">justin@digitweb.solutions</a>
+        <a class="btn btn-primary" href="mailto:info@digit.software">info@digit.software</a>
       </div>
     </div>
   </section>
@@ -804,10 +897,10 @@
       <span>Digit</span>
     </a>
     <div class="footer-links">
+      <a href="#about">About</a>
       <a href="#what-we-build">What We Build</a>
       <a href="#companies">Companies</a>
-      <a href="#approach">Approach</a>
-      <a href="mailto:justin@digitweb.solutions">Contact</a>
+      <a href="mailto:info@digit.software">Contact</a>
     </div>
     <span class="footer-meta">&copy; <span id="year">2026</span> Digit. All rights reserved.</span>
   </div>
@@ -852,8 +945,9 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
-  // Ambient hero topology field — small set of nodes, slow drifting connections.
-  // Purely decorative; respects prefers-reduced-motion by rendering a static frame.
+  // Signature hero network -- a denser, colored, "alive" topology field with
+  // traveling signal pulses along a few primary connections. Purely decorative;
+  // respects prefers-reduced-motion by rendering a static (unanimated) frame.
   (function () {
     var host = document.getElementById("heroField");
     if (!host) return;
@@ -862,22 +956,49 @@
     var svg = document.createElementNS(ns, "svg");
     svg.setAttribute("viewBox", "0 0 1200 640");
     svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
+
+    var defs = document.createElementNS(ns, "defs");
+    var filter = document.createElementNS(ns, "filter");
+    filter.setAttribute("id", "nodeGlow");
+    filter.setAttribute("x", "-200%"); filter.setAttribute("y", "-200%");
+    filter.setAttribute("width", "500%"); filter.setAttribute("height", "500%");
+    var blur = document.createElementNS(ns, "feGaussianBlur");
+    blur.setAttribute("stdDeviation", "3.2");
+    blur.setAttribute("result", "blur");
+    var merge = document.createElementNS(ns, "feMerge");
+    var m1 = document.createElementNS(ns, "feMergeNode"); m1.setAttribute("in", "blur");
+    var m2 = document.createElementNS(ns, "feMergeNode"); m2.setAttribute("in", "SourceGraphic");
+    merge.appendChild(m1); merge.appendChild(m2);
+    filter.appendChild(blur); filter.appendChild(merge);
+    defs.appendChild(filter);
+    svg.appendChild(defs);
     host.appendChild(svg);
 
-    var colors = ["#014AAD", "#A348AA", "#ED548F"];
-    var nodes = [
-      { x: 860, y: 120 }, { x: 1040, y: 210 }, { x: 950, y: 340 },
-      { x: 1120, y: 380 }, { x: 780, y: 300 }, { x: 1000, y: 470 },
-      { x: 870, y: 470 }, { x: 1140, y: 130 }
-    ];
-    var links = [[0,1],[1,2],[2,3],[2,4],[3,5],[5,6],[1,7],[4,6]];
+    var COLORS = { blue: "#3B7BE0", purple: "#A348AA", pink: "#ED548F" };
+    var palette = [COLORS.blue, COLORS.purple, COLORS.pink];
 
-    links.forEach(function (pair) {
+    var nodes = [
+      { x: 640, y: 90 },  { x: 760, y: 60 },  { x: 900, y: 110 }, { x: 1050, y: 70 },
+      { x: 1150, y: 160 }, { x: 700, y: 210 }, { x: 860, y: 230 }, { x: 1000, y: 250 },
+      { x: 1140, y: 300 }, { x: 620, y: 340 }, { x: 780, y: 380 }, { x: 940, y: 400 },
+      { x: 1080, y: 430 }, { x: 700, y: 490 }, { x: 880, y: 520 }, { x: 1030, y: 560 },
+      { x: 1160, y: 500 }, { x: 600, y: 560 }
+    ];
+    var links = [
+      [0,1],[1,2],[2,3],[3,4],[1,5],[2,6],[3,7],[4,8],
+      [5,6],[6,7],[7,8],[5,9],[6,10],[7,11],[8,12],
+      [9,10],[10,11],[11,12],[9,13],[10,14],[11,15],[12,16],
+      [13,14],[14,15],[15,16],[13,17]
+    ];
+
+    links.forEach(function (pair, i) {
       var a = nodes[pair[0]], b = nodes[pair[1]];
       var line = document.createElementNS(ns, "line");
+      line.setAttribute("id", "link" + i);
       line.setAttribute("x1", a.x); line.setAttribute("y1", a.y);
       line.setAttribute("x2", b.x); line.setAttribute("y2", b.y);
-      line.setAttribute("stroke", "rgba(236,238,255,0.16)");
+      line.setAttribute("stroke", palette[i % 3]);
+      line.setAttribute("stroke-opacity", "0.22");
       line.setAttribute("stroke-width", "1");
       svg.appendChild(line);
     });
@@ -885,19 +1006,53 @@
     nodes.forEach(function (n, i) {
       var c = document.createElementNS(ns, "circle");
       c.setAttribute("cx", n.x); c.setAttribute("cy", n.y);
-      c.setAttribute("r", i % 3 === 0 ? 4 : 2.5);
-      c.setAttribute("fill", colors[i % colors.length]);
-      c.setAttribute("opacity", "0.75");
+      c.setAttribute("r", i % 4 === 0 ? 4.5 : 2.6);
+      c.setAttribute("fill", palette[i % 3]);
+      c.setAttribute("opacity", "0.85");
+      c.setAttribute("filter", "url(#nodeGlow)");
       if (!prefersReduced) {
         var anim = document.createElementNS(ns, "animate");
         anim.setAttribute("attributeName", "opacity");
-        anim.setAttribute("values", "0.35;0.85;0.35");
-        anim.setAttribute("dur", (5 + (i % 4)) + "s");
+        anim.setAttribute("values", "0.4;0.95;0.4");
+        anim.setAttribute("dur", (4 + (i % 5)) + "s");
         anim.setAttribute("repeatCount", "indefinite");
         c.appendChild(anim);
       }
       svg.appendChild(c);
     });
+
+    // Traveling signal pulses along a handful of primary paths.
+    if (!prefersReduced) {
+      var signalPaths = [
+        [nodes[0], nodes[1], nodes[2], nodes[3]],
+        [nodes[5], nodes[6], nodes[7], nodes[8]],
+        [nodes[9], nodes[10], nodes[11], nodes[12]],
+        [nodes[13], nodes[14], nodes[15], nodes[16]]
+      ];
+      signalPaths.forEach(function (pts, i) {
+        var d = "M " + pts.map(function (p) { return p.x + " " + p.y; }).join(" L ");
+        var path = document.createElementNS(ns, "path");
+        path.setAttribute("d", d);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", "none");
+        path.setAttribute("id", "sigpath" + i);
+        svg.appendChild(path);
+
+        var dot = document.createElementNS(ns, "circle");
+        dot.setAttribute("r", "3.4");
+        dot.setAttribute("fill", palette[i % 3]);
+        dot.setAttribute("filter", "url(#nodeGlow)");
+        var motion = document.createElementNS(ns, "animateMotion");
+        motion.setAttribute("dur", (5 + i * 1.3) + "s");
+        motion.setAttribute("repeatCount", "indefinite");
+        motion.setAttribute("begin", (i * 0.8) + "s");
+        var mpath = document.createElementNS(ns, "mpath");
+        mpath.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#sigpath" + i);
+        motion.appendChild(mpath);
+        dot.appendChild(motion);
+        svg.appendChild(dot);
+      });
+    }
   })();
 </script>
 
