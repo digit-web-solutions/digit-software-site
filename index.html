@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Digit — Engineering the infrastructure for autonomous business</title>
-<meta name="description" content="Digit is an AI infrastructure and engineering company. We build autonomous software systems and intelligent operational technology, and apply that engineering across a portfolio of digital businesses we operate." />
+<title>Build. Automate. Scale. | Digit</title>
+<meta name="description" content="Digit is an AI infrastructure and engineering company. We engineer AI infrastructure, autonomous software systems, and the technology behind increasingly intelligent operations, applied across a diverse portfolio of digital businesses we operate." />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#05060A" />
 <link rel="canonical" href="https://digit.software/" />
@@ -17,15 +17,15 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Digit" />
-<meta property="og:title" content="Digit — Engineering the infrastructure for autonomous business" />
-<meta property="og:description" content="An AI infrastructure and engineering company, applying that engineering across a portfolio of digital businesses." />
+<meta property="og:title" content="Digit — Build. Automate. Scale." />
+<meta property="og:description" content="An AI infrastructure and engineering company, applying that engineering across a diverse portfolio of digital businesses." />
 <meta property="og:url" content="https://digit.software/" />
 <meta property="og:image" content="https://digit.software/assets/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Digit — Engineering the infrastructure for autonomous business" />
-<meta name="twitter:description" content="An AI infrastructure and engineering company, applying that engineering across a portfolio of digital businesses." />
+<meta name="twitter:title" content="Digit — Build. Automate. Scale." />
+<meta name="twitter:description" content="An AI infrastructure and engineering company, applying that engineering across a diverse portfolio of digital businesses." />
 <meta name="twitter:image" content="https://digit.software/assets/og-image.png" />
 
 <script type="application/ld+json">
@@ -235,9 +235,11 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 26%, rgba(0,0,0,0.5) 42%, black 58%);
+    mask-image: linear-gradient(90deg, transparent 0%, transparent 26%, rgba(0,0,0,0.5) 42%, black 58%);
   }
 
-  .hero-field svg { width: 100%; height: 100%; }
+  .hero-field svg { width: 100%; height: 100%; overflow: visible; }
 
   .hero::after {
     content: "";
@@ -288,6 +290,15 @@
     margin: 0 0 26px;
     max-width: 18ch;
     color: var(--text);
+  }
+
+  .hero-headline {
+    font-size: clamp(56px, 10vw, 118px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin: 0 0 30px;
+    max-width: none;
   }
 
   .lede {
@@ -428,19 +439,40 @@
   .card.accent-blue { --accent: linear-gradient(90deg, var(--blue), var(--blue-bright)); --accent-glow: rgba(59,123,224,0.4); }
   .card.accent-purple { --accent: linear-gradient(90deg, var(--blue-bright), var(--purple)); --accent-glow: rgba(163,72,170,0.4); }
   .card.accent-pink { --accent: linear-gradient(90deg, var(--purple), var(--pink)); --accent-glow: rgba(237,84,143,0.4); }
+  .card.accent-spectrum { --accent: var(--spectrum); --accent-glow: rgba(163,72,170,0.45); }
 
-  .card .dot {
-    width: 36px;
-    height: 36px;
+  .card .icon {
+    width: 40px;
+    height: 40px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--panel-border);
+    transition: border-color 0.2s ease, transform 0.2s var(--ease);
   }
+  .card .icon svg { width: 22px; height: 22px; }
+  .card:hover .icon { border-color: var(--panel-border-strong); transform: scale(1.04); }
 
   .card h3 { font-size: 17.5px; margin: 0 0 8px; font-weight: 700; }
   .card p { font-size: 14.5px; color: var(--text-muted); margin: 0; }
 
-  /* System Architecture (operating loop) */
+  .internal-chip {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    border: 1px solid var(--panel-border-strong);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+
+  /* How We Build (research -> develop -> test -> launch -> operate -> learn) */
   .loop {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -450,11 +482,18 @@
   .loop-step {
     background: var(--panel);
     border: 1px solid var(--panel-border);
-    border-top: 2px solid var(--step-color, var(--blue-bright));
     border-radius: 14px;
     padding: 22px 16px;
     text-align: left;
     position: relative;
+    overflow: hidden;
+  }
+  .loop-step::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--step-accent, var(--blue-bright));
   }
 
   .loop-step .n {
@@ -641,6 +680,23 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="grad-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#014AAD"/><stop offset="100%" stop-color="#3B7BE0"/>
+    </linearGradient>
+    <linearGradient id="grad-blue-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B7BE0"/><stop offset="100%" stop-color="#A348AA"/>
+    </linearGradient>
+    <linearGradient id="grad-purple-pink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A348AA"/><stop offset="100%" stop-color="#ED548F"/>
+    </linearGradient>
+    <linearGradient id="grad-spectrum" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B7BE0"/><stop offset="55%" stop-color="#A348AA"/><stop offset="100%" stop-color="#ED548F"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header>
@@ -675,11 +731,11 @@
     <div class="hero-field" aria-hidden="true" id="heroField"></div>
     <div class="wrap hero-inner">
       <span class="eyebrow"><span class="pulse"></span>AI Infrastructure + Engineering</span>
-      <h1>Engineering the infrastructure for <span class="grad-text">autonomous business.</span></h1>
+      <h1 class="hero-headline">Build.<br/>Automate.<br/><span class="grad-text">Scale.</span></h1>
       <p class="lede">
-        Digit builds AI infrastructure, autonomous software systems, and the technology
+        Engineering AI infrastructure, autonomous software systems, and the technology
         behind increasingly intelligent operations. We apply that engineering across a
-        portfolio of digital businesses we operate.
+        diverse portfolio of digital businesses we operate.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#about">Explore Digit</a>
@@ -761,45 +817,58 @@
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(680px circle at 15% 60%, rgba(237,84,143,0.13), transparent 62%);"></div>
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="kicker kicker-purple">Our Companies</span>
+        <span class="kicker kicker-purple">Digit Ecosystem</span>
         <h2>Technology across a portfolio of businesses.</h2>
-        <p>Digit operates across multiple digital industries, applying shared
-          engineering capabilities to businesses with distinct products, markets, and
-          operating models.</p>
+        <p>Digit operates across multiple digital industries while developing the
+          shared technology and infrastructure behind them.</p>
       </div>
       <div class="grid3">
         <div class="card accent-blue reveal">
-          <div class="dot"></div>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 4h2l1.6 10.6a2 2 0 0 0 2 1.7h7.8a2 2 0 0 0 2-1.6L20 8H6.2" stroke="url(#grad-blue)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4" stroke="url(#grad-blue)" stroke-width="1.6"/><circle cx="17" cy="20" r="1.4" stroke="url(#grad-blue)" stroke-width="1.6"/></svg>
+          </div>
           <h3>Digit E-Commerce</h3>
           <p>Digital commerce businesses combining product development, intelligent
             operations, and technology-driven distribution.</p>
         </div>
         <div class="card accent-purple reveal">
-          <div class="dot"></div>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="13" height="10" rx="2" stroke="url(#grad-blue-purple)" stroke-width="1.6"/><path d="M16 10.5l4.2-2.4a.8.8 0 0 1 1.2.7v6.4a.8.8 0 0 1-1.2.7L16 13.5" stroke="url(#grad-blue-purple)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
           <h3>Digit Media</h3>
           <p>Digital media businesses built around scalable content systems,
             technology-enabled production, and modern distribution.</p>
         </div>
-        <div class="card accent-pink reveal">
-          <div class="dot"></div>
-          <h3>Digit Virtual Media</h3>
-          <p>Virtual media ventures exploring digital identity, intelligent content,
-            entertainment, and new forms of audience engagement.</p>
+        <div class="card accent-spectrum reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5c-3 0-5 2-5.3 4.3-1.5.5-2.2 2-1.9 3.4.2 1 1 1.8 1.9 2.1.1 1.6 1.1 3 2.6 3.6v2.1h5v-2.1c1.5-.6 2.5-2 2.6-3.6.9-.3 1.7-1.1 1.9-2.1.3-1.4-.4-2.9-1.9-3.4C17 5.5 15 3.5 12 3.5z" stroke="url(#grad-spectrum)" stroke-width="1.4" stroke-linejoin="round"/><circle cx="9.5" cy="11" r="0.9" fill="url(#grad-spectrum)"/><circle cx="14.5" cy="10" r="0.9" fill="url(#grad-spectrum)"/><circle cx="12" cy="14" r="0.9" fill="url(#grad-spectrum)"/><path d="M9.5 11l2.5 3M14.5 10l-2.5 4" stroke="url(#grad-spectrum)" stroke-width="1.1"/></svg>
+          </div>
+          <span class="internal-chip">Internal Infrastructure</span>
+          <h3>Cerebro</h3>
+          <p>Digit's institutional intelligence infrastructure — designed to preserve
+            organizational knowledge, connect context across operations, and give
+            intelligent systems durable understanding beyond a single session.</p>
         </div>
-        <div class="card accent-blue reveal">
-          <div class="dot"></div>
+        <div class="card accent-pink reveal">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 17l4.5-5 3.5 3 4-6L20 13" stroke="url(#grad-purple-pink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="13" r="1.5" fill="url(#grad-purple-pink)"/></svg>
+          </div>
           <h3>Digit Marketing</h3>
           <p>Technology-driven marketing focused on customer acquisition, automation,
             digital growth, and measurable performance.</p>
         </div>
         <div class="card accent-purple reveal">
-          <div class="dot"></div>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="url(#grad-blue-purple)" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.3 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.3-4-8.5s1.4-6.2 4-8.5z" stroke="url(#grad-blue-purple)" stroke-width="1.4"/></svg>
+          </div>
           <h3>Digit Web Solutions</h3>
-          <p>Web engineering and digital infrastructure spanning websites, online
+          <p>Web development and digital infrastructure spanning websites, online
             platforms, domains, hosting, and connected business systems.</p>
         </div>
         <div class="card accent-pink reveal">
-          <div class="dot"></div>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M8 8L4 12l4 4M16 8l4 4-4 4" stroke="url(#grad-purple-pink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.4" fill="url(#grad-purple-pink)"/></svg>
+          </div>
           <h3>Digit Software Solutions</h3>
           <p>Software engineering focused on intelligent applications, operational
             platforms, automation, and autonomous infrastructure.</p>
@@ -812,25 +881,25 @@
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(620px circle at 85% 15%, rgba(1,74,173,0.16), transparent 60%);"></div>
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="kicker kicker-purple">System Architecture</span>
-        <h2>Intelligence connected to execution.</h2>
-        <p>Autonomous software requires more than intelligence. It needs a continuous
-          architecture for understanding context, making decisions, coordinating work,
-          executing actions, verifying outcomes, and retaining what it learns.</p>
+        <span class="kicker kicker-blue">How We Build</span>
+        <h2>From research to operation.</h2>
+        <p>Digit combines engineering and operation in a continuous cycle —
+          researching opportunities, developing systems, testing them against real
+          conditions, launching them into operation, and learning from the results.</p>
       </div>
       <div class="loop" role="list">
-        <div class="loop-step reveal" role="listitem" style="--step-color:var(--blue-bright)"><div class="n">01</div><h4>Understand</h4><p>Build an accurate picture of the current environment.</p></div>
-        <div class="loop-step reveal" role="listitem" style="--step-color:var(--blue-bright)"><div class="n">02</div><h4>Decide</h4><p>Determine the appropriate next action.</p></div>
-        <div class="loop-step reveal" role="listitem" style="--step-color:var(--purple)"><div class="n">03</div><h4>Coordinate</h4><p>Connect objectives, systems, and responsibilities.</p></div>
-        <div class="loop-step reveal" role="listitem" style="--step-color:var(--purple)"><div class="n">04</div><h4>Execute</h4><p>Act through integrated software and infrastructure.</p></div>
-        <div class="loop-step reveal" role="listitem" style="--step-color:var(--pink)"><div class="n">05</div><h4>Verify</h4><p>Measure the result against the intended outcome.</p></div>
-        <div class="loop-step reveal" role="listitem" style="--step-color:var(--pink)"><div class="n">06</div><h4>Learn</h4><p>Turn experience into persistent knowledge.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--blue-bright); --step-accent:var(--blue)"><div class="n">01</div><h4>Research</h4><p>Identify opportunities, constraints, and the systems worth building.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--blue-bright); --step-accent:linear-gradient(90deg,var(--blue),var(--blue-bright))"><div class="n">02</div><h4>Develop</h4><p>Turn validated ideas into software, infrastructure, and operational systems.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--purple); --step-accent:linear-gradient(90deg,var(--blue-bright),var(--purple))"><div class="n">03</div><h4>Test</h4><p>Evaluate performance, reliability, usability, and real-world behavior.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--purple); --step-accent:linear-gradient(90deg,var(--purple),var(--pink))"><div class="n">04</div><h4>Launch</h4><p>Move proven systems into active operation.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--pink); --step-accent:var(--pink)"><div class="n">05</div><h4>Operate</h4><p>Run, measure, and improve systems in real operating environments.</p></div>
+        <div class="loop-step reveal" role="listitem" style="--step-color:var(--pink); --step-accent:var(--spectrum)"><div class="n">06</div><h4>Learn</h4><p>Turn outcomes and experience into knowledge for what comes next.</p></div>
       </div>
       <div class="loop-note reveal">
-        <span class="emph grad-text">From intelligence to operation.</span>
-        <p>Digit engineers the connective infrastructure between reasoning and
-          real-world execution, allowing intelligent systems to carry work forward
-          with continuity and control.</p>
+        <span class="emph grad-text">Build. Operate. Learn.</span>
+        <p>The cycle does not end at launch. Real-world operation creates the
+          feedback that informs better software, stronger infrastructure, and the
+          next generation of systems.</p>
       </div>
     </div>
   </section>
@@ -945,14 +1014,20 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
-  // Signature hero network -- a denser, colored, "alive" topology field with
-  // traveling signal pulses along a few primary connections. Purely decorative;
-  // respects prefers-reduced-motion by rendering a static (unanimated) frame.
+  // Signature hero network -- a Cerebro-inspired living web of intelligence:
+  // clustered nodes with primary/secondary/tertiary visual hierarchy, slow
+  // independent drift, and traveling signal pulses that briefly illuminate
+  // the node they arrive at. Purely decorative and abstract -- never a literal
+  // architecture diagram, never internal names. Respects prefers-reduced-motion
+  // by rendering a static, unanimated frame; renders a lighter set on mobile.
   (function () {
     var host = document.getElementById("heroField");
     if (!host) return;
     var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var isMobile = window.innerWidth < 640;
     var ns = "http://www.w3.org/2000/svg";
+    var XLINK = "http://www.w3.org/1999/xlink";
+
     var svg = document.createElementNS(ns, "svg");
     svg.setAttribute("viewBox", "0 0 1200 640");
     svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
@@ -963,7 +1038,7 @@
     filter.setAttribute("x", "-200%"); filter.setAttribute("y", "-200%");
     filter.setAttribute("width", "500%"); filter.setAttribute("height", "500%");
     var blur = document.createElementNS(ns, "feGaussianBlur");
-    blur.setAttribute("stdDeviation", "3.2");
+    blur.setAttribute("stdDeviation", "3");
     blur.setAttribute("result", "blur");
     var merge = document.createElementNS(ns, "feMerge");
     var m1 = document.createElementNS(ns, "feMergeNode"); m1.setAttribute("in", "blur");
@@ -974,62 +1049,160 @@
     svg.appendChild(defs);
     host.appendChild(svg);
 
-    var COLORS = { blue: "#3B7BE0", purple: "#A348AA", pink: "#ED548F" };
-    var palette = [COLORS.blue, COLORS.purple, COLORS.pink];
+    var COLORS = ["#3B7BE0", "#A348AA", "#ED548F"];
 
-    var nodes = [
-      { x: 640, y: 90 },  { x: 760, y: 60 },  { x: 900, y: 110 }, { x: 1050, y: 70 },
-      { x: 1150, y: 160 }, { x: 700, y: 210 }, { x: 860, y: 230 }, { x: 1000, y: 250 },
-      { x: 1140, y: 300 }, { x: 620, y: 340 }, { x: 780, y: 380 }, { x: 940, y: 400 },
-      { x: 1080, y: 430 }, { x: 700, y: 490 }, { x: 880, y: 520 }, { x: 1030, y: 560 },
-      { x: 1160, y: 500 }, { x: 600, y: 560 }
-    ];
-    var links = [
-      [0,1],[1,2],[2,3],[3,4],[1,5],[2,6],[3,7],[4,8],
-      [5,6],[6,7],[7,8],[5,9],[6,10],[7,11],[8,12],
-      [9,10],[10,11],[11,12],[9,13],[10,14],[11,15],[12,16],
-      [13,14],[14,15],[15,16],[13,17]
+    // Clustered layout: loose groups read as an intelligent web rather than an
+    // evenly-tiled mesh. Coordinates intentionally run past the 1200/640
+    // viewBox edges (clipped by "slice") so the network feels larger than the
+    // viewport. tier: 0 = primary (large/bright/junction), 1 = secondary,
+    // 2 = tertiary (small/faint, pure depth/density).
+    var clusters = [
+      { name: "a", nodes: [
+        [920, 50, 0], [1060, 35, 0], [1170, 85, 1], [1010, 120, 0],
+        [880, 110, 1], [1120, 150, 1], [990, 60, 2]
+      ]},
+      { name: "b", nodes: [
+        [1200, 230, 0], [1090, 260, 0], [980, 290, 1], [1150, 320, 1],
+        [1040, 180, 1], [930, 220, 2], [1230, 140, 2]
+      ]},
+      { name: "c", nodes: [
+        [1180, 420, 0], [1060, 450, 0], [940, 410, 1], [1120, 510, 1],
+        [1000, 540, 2], [1160, 560, 1], [1240, 460, 2]
+      ]},
+      { name: "d", nodes: [
+        [880, 590, 1], [760, 540, 2], [820, 460, 2], [700, 420, 2], [960, 615, 2]
+      ]},
+      { name: "bridge", nodes: [
+        [650, 150, 2], [600, 280, 2], [680, 340, 2], [560, 460, 2],
+        [630, 560, 2], [720, 80, 2]
+      ]}
     ];
 
-    links.forEach(function (pair, i) {
-      var a = nodes[pair[0]], b = nodes[pair[1]];
+    var nodes = [];
+    clusters.forEach(function (cluster) {
+      cluster.nodes.forEach(function (n) {
+        nodes.push({ x: n[0], y: n[1], tier: n[2], cluster: cluster.name });
+      });
+    });
+
+    function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+
+    // Local mesh: each node links to its ~2 nearest same-cluster neighbors,
+    // deduplicated -- produces natural clusters and pathways instead of every
+    // node connecting to every other node.
+    var linkSet = {};
+    var links = [];
+    function addLink(i, j, backbone) {
+      var key = i < j ? i + "-" + j : j + "-" + i;
+      if (linkSet[key]) return;
+      linkSet[key] = true;
+      links.push({ a: i, b: j, backbone: !!backbone });
+    }
+    clusters.reduce(function (offset, cluster) {
+      var idx = cluster.nodes.map(function (_, k) { return offset + k; });
+      idx.forEach(function (i) {
+        var candidates = idx.filter(function (j) { return j !== i; })
+          .sort(function (j, k) { return dist(nodes[i], nodes[j]) - dist(nodes[i], nodes[k]); });
+        candidates.slice(0, 2).forEach(function (j) { addLink(i, j); });
+      });
+      return offset + cluster.nodes.length;
+    }, 0);
+
+    // Hand-picked cross-cluster backbone bridges -- the sparser, more visible
+    // "important junction" paths signals travel along.
+    var offsets = {}; (function () {
+      var o = 0; clusters.forEach(function (c) { offsets[c.name] = o; o += c.nodes.length; });
+    })();
+    var bridges = [
+      [offsets.a + 3, offsets.b + 1], [offsets.b + 2, offsets.c + 2],
+      [offsets.c + 1, offsets.d + 0], [offsets.a + 4, offsets.bridge + 0],
+      [offsets.b + 4, offsets.bridge + 2], [offsets.c + 3, offsets.bridge + 4],
+      [offsets.bridge + 0, offsets.bridge + 5]
+    ];
+    bridges.forEach(function (pair) { addLink(pair[0], pair[1], true); });
+
+    if (isMobile) {
+      // Lighter mobile pass: keep tier-0/1 nodes and only backbone links, drop
+      // the dense tertiary mesh entirely for clarity and performance.
+      var keep = {};
+      nodes.forEach(function (n, i) { if (n.tier < 2) keep[i] = true; });
+      links = links.filter(function (l) { return l.backbone || (keep[l.a] && keep[l.b]); });
+    }
+
+    // Draw links first (beneath nodes). Backbone links get brand color + more
+    // opacity; the rest stay faint and mostly neutral for depth.
+    links.forEach(function (l, i) {
       var line = document.createElementNS(ns, "line");
-      line.setAttribute("id", "link" + i);
+      var a = nodes[l.a], b = nodes[l.b];
       line.setAttribute("x1", a.x); line.setAttribute("y1", a.y);
       line.setAttribute("x2", b.x); line.setAttribute("y2", b.y);
-      line.setAttribute("stroke", palette[i % 3]);
-      line.setAttribute("stroke-opacity", "0.22");
-      line.setAttribute("stroke-width", "1");
+      if (l.backbone) {
+        line.setAttribute("stroke", COLORS[i % 3]);
+        line.setAttribute("stroke-opacity", "0.32");
+        line.setAttribute("stroke-width", "1.1");
+        line.setAttribute("id", "backbone" + i);
+      } else {
+        line.setAttribute("stroke", "#ECEEFF");
+        line.setAttribute("stroke-opacity", a.tier === 2 || b.tier === 2 ? "0.06" : "0.13");
+        line.setAttribute("stroke-width", "1");
+      }
       svg.appendChild(line);
     });
 
+    var TIER_R = [5, 3, 1.6];
+    var TIER_OPACITY = [0.95, 0.68, 0.36];
+
     nodes.forEach(function (n, i) {
+      if (isMobile && n.tier === 2) return;
+      var color = COLORS[i % 3];
+      var group = document.createElementNS(ns, "g");
+      if (!prefersReduced && n.tier < 2) {
+        // Slow independent drift -- small enough to read as "alive," not distracting.
+        var dx = ((i * 37) % 14) - 7, dy = ((i * 53) % 14) - 7;
+        var dur = 16 + (i % 9) * 2;
+        var wobble = document.createElementNS(ns, "animateTransform");
+        wobble.setAttribute("attributeName", "transform");
+        wobble.setAttribute("type", "translate");
+        wobble.setAttribute("values", "0,0; " + dx + "," + dy + "; 0,0; " + (-dx) + "," + (-dy) + "; 0,0");
+        wobble.setAttribute("dur", dur + "s");
+        wobble.setAttribute("repeatCount", "indefinite");
+        group.appendChild(wobble);
+      }
       var c = document.createElementNS(ns, "circle");
       c.setAttribute("cx", n.x); c.setAttribute("cy", n.y);
-      c.setAttribute("r", i % 4 === 0 ? 4.5 : 2.6);
-      c.setAttribute("fill", palette[i % 3]);
-      c.setAttribute("opacity", "0.85");
-      c.setAttribute("filter", "url(#nodeGlow)");
-      if (!prefersReduced) {
-        var anim = document.createElementNS(ns, "animate");
-        anim.setAttribute("attributeName", "opacity");
-        anim.setAttribute("values", "0.4;0.95;0.4");
-        anim.setAttribute("dur", (4 + (i % 5)) + "s");
-        anim.setAttribute("repeatCount", "indefinite");
-        c.appendChild(anim);
+      c.setAttribute("r", TIER_R[n.tier]);
+      c.setAttribute("fill", color);
+      c.setAttribute("opacity", String(TIER_OPACITY[n.tier]));
+      if (n.tier < 2) c.setAttribute("filter", "url(#nodeGlow)");
+      if (!prefersReduced && n.tier < 2) {
+        var pulse = document.createElementNS(ns, "animate");
+        pulse.setAttribute("attributeName", "opacity");
+        pulse.setAttribute("values", (TIER_OPACITY[n.tier] * 0.55) + ";" + TIER_OPACITY[n.tier] + ";" + (TIER_OPACITY[n.tier] * 0.55));
+        pulse.setAttribute("dur", (5 + (i % 6)) + "s");
+        pulse.setAttribute("repeatCount", "indefinite");
+        c.appendChild(pulse);
       }
-      svg.appendChild(c);
+      c.setAttribute("id", "node" + i);
+      group.appendChild(c);
+      svg.appendChild(group);
     });
 
-    // Traveling signal pulses along a handful of primary paths.
+    // Traveling signal pulses along backbone paths -- slow, and each arrival
+    // briefly brightens its destination node (approximated via a matching
+    // delayed pulse, not a literal event trigger, to keep this dependency-free).
     if (!prefersReduced) {
-      var signalPaths = [
-        [nodes[0], nodes[1], nodes[2], nodes[3]],
-        [nodes[5], nodes[6], nodes[7], nodes[8]],
-        [nodes[9], nodes[10], nodes[11], nodes[12]],
-        [nodes[13], nodes[14], nodes[15], nodes[16]]
-      ];
-      signalPaths.forEach(function (pts, i) {
+      var signalPaths = isMobile
+        ? [[offsets.a + 3, offsets.b + 1], [offsets.b + 2, offsets.c + 2]]
+        : [
+            [offsets.a + 3, offsets.b + 1, offsets.b + 2],
+            [offsets.b + 2, offsets.c + 2, offsets.c + 3],
+            [offsets.c + 1, offsets.d + 0],
+            [offsets.a + 4, offsets.bridge + 0, offsets.bridge + 5],
+            [offsets.b + 4, offsets.bridge + 2],
+            [offsets.c + 3, offsets.bridge + 4]
+          ];
+      signalPaths.forEach(function (idxPath, i) {
+        var pts = idxPath.map(function (idx) { return nodes[idx]; });
         var d = "M " + pts.map(function (p) { return p.x + " " + p.y; }).join(" L ");
         var path = document.createElementNS(ns, "path");
         path.setAttribute("d", d);
@@ -1038,19 +1211,41 @@
         path.setAttribute("id", "sigpath" + i);
         svg.appendChild(path);
 
+        var travelDur = 7 + i * 1.6;
+        var beginOffset = i * 1.7;
+
         var dot = document.createElementNS(ns, "circle");
-        dot.setAttribute("r", "3.4");
-        dot.setAttribute("fill", palette[i % 3]);
+        dot.setAttribute("r", "3.2");
+        dot.setAttribute("fill", COLORS[i % 3]);
         dot.setAttribute("filter", "url(#nodeGlow)");
         var motion = document.createElementNS(ns, "animateMotion");
-        motion.setAttribute("dur", (5 + i * 1.3) + "s");
+        motion.setAttribute("dur", travelDur + "s");
         motion.setAttribute("repeatCount", "indefinite");
-        motion.setAttribute("begin", (i * 0.8) + "s");
+        motion.setAttribute("begin", beginOffset + "s");
         var mpath = document.createElementNS(ns, "mpath");
-        mpath.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#sigpath" + i);
+        mpath.setAttributeNS(XLINK, "href", "#sigpath" + i);
         motion.appendChild(mpath);
         dot.appendChild(motion);
         svg.appendChild(dot);
+
+        // Arrival glow on the destination node: one repeating animation whose
+        // period matches the signal's own travel time, spiking only near the
+        // end of each cycle (when the signal actually arrives) -- avoids any
+        // fragile self-referencing SMIL timing while still looping cleanly.
+        var destIdx = idxPath[idxPath.length - 1];
+        var destNode = document.getElementById("node" + destIdx);
+        if (destNode) {
+          var arrive = document.createElementNS(ns, "animate");
+          arrive.setAttribute("attributeName", "r");
+          var baseR = TIER_R[nodes[destIdx].tier];
+          arrive.setAttribute("values", baseR + ";" + baseR + ";" + (baseR * 1.9) + ";" + baseR);
+          arrive.setAttribute("keyTimes", "0;0.9;0.96;1");
+          arrive.setAttribute("calcMode", "linear");
+          arrive.setAttribute("dur", travelDur + "s");
+          arrive.setAttribute("begin", beginOffset + "s");
+          arrive.setAttribute("repeatCount", "indefinite");
+          destNode.appendChild(arrive);
+        }
       });
     }
   })();
