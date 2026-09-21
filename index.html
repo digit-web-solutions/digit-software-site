@@ -504,6 +504,7 @@
     text-align: left;
     position: relative;
     overflow: hidden;
+    transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms ease;
   }
   .loop-step::before {
     content: "";
@@ -511,6 +512,27 @@
     top: 0; left: 0; right: 0;
     height: 3px;
     background: var(--step-accent, var(--blue-bright));
+    transition: filter 240ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .loop-step:hover {
+      transform: translateY(-6px) scale(1.03);
+      border-color: var(--panel-border-strong);
+      box-shadow:
+        0 28px 44px -20px rgba(2, 3, 8, 0.55),
+        0 10px 22px -10px color-mix(in srgb, var(--step-color, var(--blue-bright)) 45%, transparent);
+      z-index: 2;
+    }
+    .loop-step:hover::before { filter: brightness(1.35); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loop-step:hover {
+      transform: none;
+      border-color: var(--panel-border-strong);
+      box-shadow: 0 0 0 1px var(--panel-border-strong);
+    }
   }
 
   .loop-step .n {
@@ -1121,13 +1143,52 @@
       ]},
       { name: "d", nodes: [
         [880, 590, 1], [760, 540, 2], [820, 460, 2], [700, 420, 2], [960, 615, 2],
-        [815, 565, 2], [635, 480, 2]
+        [815, 565, 2], [635, 480, 2], [795, 505, 0]
       ]},
       { name: "bridge", nodes: [
         [650, 150, 2], [600, 280, 2], [680, 340, 2], [560, 460, 2],
-        [630, 560, 2], [720, 80, 2], [505, 205, 2], [545, 355, 2]
+        [630, 560, 2], [720, 80, 2], [505, 205, 2], [545, 355, 2], [615, 250, 0]
       ]}
     ];
+
+    // Density fill: a handful of extra secondary/tertiary nodes scattered
+    // around each cluster's footprint via a deterministic golden-angle
+    // spiral (not Math.random -- reproducible, and avoids an even/grid-like
+    // look). Appended after each cluster's hand-placed nodes, so existing
+    // local indices used by the backbone bridges/signal paths/activity
+    // group below are unaffected. This is what takes the network from a
+    // sparse foreground graph to a substantially denser, deeper-feeling one
+    // without hand-authoring dozens more literal coordinates.
+    function goldenScatter(seedIndex, cx, cy, rx, ry, count, tierPattern) {
+      var pts = [];
+      var GOLDEN = 2.399963;
+      for (var k = 0; k < count; k++) {
+        var t = (k + 1) / (count + 1);
+        var jitter = 0.6 + 0.4 * (((k * 7 + seedIndex * 13) % 5) / 4);
+        var rt = Math.sqrt(t) * jitter;
+        var angle = seedIndex * 0.9 + k * GOLDEN;
+        pts.push([
+          Math.round(cx + rx * rt * Math.cos(angle)),
+          Math.round(cy + ry * rt * Math.sin(angle)),
+          tierPattern[k % tierPattern.length]
+        ]);
+      }
+      return pts;
+    }
+    var clusterFill = {
+      a:      { cx: 1000, cy: 90,  rx: 150, ry: 95,  count: 4, tiers: [2, 2, 1, 2] },
+      b:      { cx: 1080, cy: 250, rx: 150, ry: 130, count: 4, tiers: [2, 1, 2, 2] },
+      c:      { cx: 1070, cy: 465, rx: 150, ry: 100, count: 4, tiers: [2, 2, 1, 2] },
+      d:      { cx: 785,  cy: 520, rx: 140, ry: 95,  count: 3, tiers: [2, 2, 1] },
+      bridge: { cx: 610,  cy: 320, rx: 110, ry: 220, count: 3, tiers: [2, 1, 2] }
+    };
+    clusters.forEach(function (cluster, ci) {
+      var fill = clusterFill[cluster.name];
+      if (!fill) return;
+      cluster.nodes = cluster.nodes.concat(
+        goldenScatter(ci + 1, fill.cx, fill.cy, fill.rx, fill.ry, fill.count, fill.tiers)
+      );
+    });
 
     var nodes = [];
     clusters.forEach(function (cluster) {
@@ -1169,7 +1230,8 @@
       [offsets.c + 1, offsets.d + 0], [offsets.a + 4, offsets.bridge + 0],
       [offsets.b + 4, offsets.bridge + 2], [offsets.c + 3, offsets.bridge + 4],
       [offsets.bridge + 0, offsets.bridge + 5], [offsets.a + 8, offsets.bridge + 6],
-      [offsets.c + 8, offsets.d + 6]
+      [offsets.c + 8, offsets.d + 6],
+      [offsets.a + 11, offsets.bridge + 10], [offsets.c + 11, offsets.d + 10]
     ];
     bridges.forEach(function (pair) { addLink(pair[0], pair[1], true); });
 
