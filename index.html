@@ -136,7 +136,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 0;
+    /* Longhand on purpose: this class is combined with .wrap on the same
+       element (class="wrap nav"); a "padding: 15px 0" shorthand here would
+       win over .wrap's "padding: 0 24px" (same specificity, later in
+       source) and silently zero out the horizontal gutter -- invisible on
+       desktop where .wrap's auto-centering margin still creates visual
+       space, but a real flush-edge bug on mobile where that margin is 0. */
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .brand {
@@ -346,7 +353,15 @@
 
   /* Section shell */
   section { padding: 100px 0; border-top: 1px solid var(--panel-border); position: relative; overflow: hidden; }
-  section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
+  /* Anchor targets live on the visible section INTRO (eyebrow/heading, or
+     the contact panel), not the outer padded <section> -- the outer section
+     boundary sits ~100px above the actual visible content (section padding),
+     so targeting it left a large empty gap under the header after
+     navigation. See #about/#what-we-build/#companies/#approach/#contact
+     below. */
+  #about, #what-we-build, #companies, #approach, #contact {
+    scroll-margin-top: calc(var(--header-h) + 12px);
+  }
 
   .section-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 
@@ -422,7 +437,7 @@
   .build-card p { font-size: 15px; color: var(--text-muted); margin: 0; }
 
   /* Companies */
-  #companies .grid3 { grid-auto-rows: 1fr; }
+  .companies-section .grid3 { grid-auto-rows: 1fr; }
 
   .card {
     background: var(--panel);
@@ -677,7 +692,7 @@
   .footer-links a:hover { color: var(--purple); }
 
   @media (max-width: 900px) {
-    #companies .grid3 { grid-template-columns: repeat(2, 1fr); }
+    .companies-section .grid3 { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 860px) {
@@ -690,14 +705,23 @@
     nav.links { display: none; }
     .nav-toggle { display: inline-flex; }
     .nav-cta { display: none; }
-    .grid3, #companies .grid3 { grid-template-columns: 1fr; }
-    #companies .grid3 { grid-auto-rows: auto; }
+    .grid3, .companies-section .grid3 { grid-template-columns: 1fr; }
+    .companies-section .grid3 { grid-auto-rows: auto; }
     .loop { grid-template-columns: repeat(2, 1fr); }
     .hero { padding: 64px 0; }
     section { padding: 72px 0; }
     .contact-panel { padding: 36px; flex-direction: column; align-items: flex-start; }
     .footer-row { flex-direction: column; align-items: flex-start; }
     .footer-links { flex-wrap: wrap; row-gap: 10px; }
+    /* Mobile's hero copy stacks full-width (no side-by-side text/network
+       split like desktop), so the desktop mask -- a left-to-right fade --
+       would leave network lines slicing directly through the paragraph.
+       Fade the whole top ~70% (eyebrow through CTAs) to a low, subtle
+       opacity instead, opening up toward the bottom of the hero. */
+    .hero-field {
+      -webkit-mask-image: linear-gradient(165deg, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.34) 40%, rgba(0,0,0,0.62) 60%, black 80%);
+      mask-image: linear-gradient(165deg, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.34) 40%, rgba(0,0,0,0.62) 60%, black 80%);
+    }
   }
 
   body.nav-open .mobile-panel { display: flex; }
@@ -706,7 +730,11 @@
     display: none;
     flex-direction: column;
     gap: 4px;
-    padding: 8px 0 20px;
+    /* Longhand -- same reason as .nav above: this class combines with .wrap
+       on the same element, and a shorthand here would zero .wrap's
+       horizontal gutter, leaving menu labels flush against the edge. */
+    padding-top: 8px;
+    padding-bottom: 20px;
     border-top: 1px solid var(--panel-border);
   }
   .mobile-panel a {
@@ -790,8 +818,7 @@
       <h1 class="hero-headline">Build.<br/>Automate.<br/><span class="grad-text">Scale.</span></h1>
       <p class="lede">
         Engineering AI infrastructure, autonomous software systems, and the technology
-        behind increasingly intelligent operations. We apply that engineering across a
-        diverse portfolio of digital businesses we operate.
+        behind increasingly intelligent operations.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#about">Explore Digit</a>
@@ -800,10 +827,10 @@
     </div>
   </section>
 
-  <section id="about">
+  <section>
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(560px circle at 12% 10%, rgba(1,74,173,0.16), transparent 60%);"></div>
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="about">
         <span class="kicker kicker-blue">About Digit</span>
         <h2>AI Engineering for Intelligent Systems.</h2>
       </div>
@@ -835,10 +862,10 @@
     </div>
   </section>
 
-  <section id="what-we-build">
+  <section>
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(600px circle at 88% 20%, rgba(163,72,170,0.16), transparent 60%);"></div>
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="what-we-build">
         <span class="kicker kicker-blue">What We Build</span>
         <h2>Engineering intelligence into operations.</h2>
         <p>Digit builds businesses alongside the software and infrastructure that
@@ -870,10 +897,10 @@
     </div>
   </section>
 
-  <section id="companies">
+  <section class="companies-section">
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(680px circle at 15% 60%, rgba(237,84,143,0.13), transparent 62%);"></div>
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="companies">
         <span class="kicker kicker-purple">Digit Ecosystem</span>
         <h2>A portfolio powered by intelligent infrastructure.</h2>
         <p>Digit operates across multiple digital industries while developing the
@@ -946,10 +973,10 @@
     </div>
   </section>
 
-  <section id="approach">
+  <section>
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(620px circle at 85% 15%, rgba(1,74,173,0.16), transparent 60%);"></div>
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="approach">
         <span class="kicker kicker-blue">How We Build</span>
         <h2>Research. Build. Learn. Repeat.</h2>
         <p>Digit combines research, engineering, execution, and institutional
@@ -1014,10 +1041,10 @@
     </div>
   </section>
 
-  <section id="contact">
+  <section>
     <div class="section-glow" aria-hidden="true" style="background:radial-gradient(500px circle at 50% 0%, rgba(163,72,170,0.14), transparent 60%);"></div>
     <div class="wrap">
-      <div class="contact-panel reveal">
+      <div class="contact-panel reveal" id="contact">
         <div>
           <span class="kicker">Contact</span>
           <h2>Let's build what comes next.</h2>
@@ -1101,7 +1128,13 @@
     var XLINK = "http://www.w3.org/1999/xlink";
 
     var svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("viewBox", "0 0 1200 640");
+    // Mobile gets its own portrait-proportioned coordinate space rather than
+    // a cropped slice of the desktop viewBox -- at 1200x640 with "slice" on
+    // a narrow/tall mobile hero, only a ~27% center strip of the desktop
+    // layout was ever visible, which is what made the mobile network read
+    // as a few disconnected lines (most nodes, and most of each cluster,
+    // were simply cropped out of frame).
+    svg.setAttribute("viewBox", isMobile ? "0 0 640 900" : "0 0 1200 640");
     svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
 
     var defs = document.createElementNS(ns, "defs");
@@ -1127,8 +1160,9 @@
     // evenly-tiled mesh. Coordinates intentionally run past the 1200/640
     // viewBox edges (clipped by "slice") so the network feels larger than the
     // viewport. tier: 0 = primary (large/bright/junction), 1 = secondary,
-    // 2 = tertiary (small/faint, pure depth/density).
-    var clusters = [
+    // 2 = tertiary (small/faint, pure depth/density). Desktop-only -- unchanged
+    // from the approved ~62-node composition.
+    var desktopClusters = [
       { name: "a", nodes: [
         [920, 50, 0], [1060, 35, 0], [1170, 85, 1], [1010, 120, 0],
         [880, 110, 1], [1120, 150, 1], [990, 60, 2], [1000, 15, 2], [845, 165, 2]
@@ -1151,14 +1185,26 @@
       ]}
     ];
 
+    // Mobile gets its own purpose-built composition: 5 primary hubs arranged
+    // as a vertical chain down the portrait viewBox (not a filtered/cropped
+    // copy of the desktop clusters), each with its own local secondary/
+    // tertiary fill and a short chain of hub-to-hub bridges. This is what
+    // gives a phone screen a handful of clearly recognizable connected
+    // structures instead of a few long, contextless diagonal lines.
+    var mobileClusters = [
+      { name: "h1", nodes: [[420, 75, 0]] },
+      { name: "h2", nodes: [[500, 265, 0]] },
+      { name: "h3", nodes: [[370, 460, 0]] },
+      { name: "h4", nodes: [[480, 650, 0]] },
+      { name: "h5", nodes: [[360, 830, 0]] }
+    ];
+
     // Density fill: a handful of extra secondary/tertiary nodes scattered
     // around each cluster's footprint via a deterministic golden-angle
     // spiral (not Math.random -- reproducible, and avoids an even/grid-like
     // look). Appended after each cluster's hand-placed nodes, so existing
     // local indices used by the backbone bridges/signal paths/activity
-    // group below are unaffected. This is what takes the network from a
-    // sparse foreground graph to a substantially denser, deeper-feeling one
-    // without hand-authoring dozens more literal coordinates.
+    // group below are unaffected.
     function goldenScatter(seedIndex, cx, cy, rx, ry, count, tierPattern) {
       var pts = [];
       var GOLDEN = 2.399963;
@@ -1175,15 +1221,29 @@
       }
       return pts;
     }
-    var clusterFill = {
+    var desktopFill = {
       a:      { cx: 1000, cy: 90,  rx: 150, ry: 95,  count: 4, tiers: [2, 2, 1, 2] },
       b:      { cx: 1080, cy: 250, rx: 150, ry: 130, count: 4, tiers: [2, 1, 2, 2] },
       c:      { cx: 1070, cy: 465, rx: 150, ry: 100, count: 4, tiers: [2, 2, 1, 2] },
       d:      { cx: 785,  cy: 520, rx: 140, ry: 95,  count: 3, tiers: [2, 2, 1] },
       bridge: { cx: 610,  cy: 320, rx: 110, ry: 220, count: 3, tiers: [2, 1, 2] }
     };
+    // Secondary-heavy on purpose (unlike desktop's tertiary-heavy fill) --
+    // mobile needs more of its nodes to read as visible structural members
+    // of a hub, not just faint depth filler, since there's much less overall
+    // screen area to establish that impression.
+    var mobileFill = {
+      h1: { cx: 420, cy: 75,  rx: 140, ry: 90,  count: 6, tiers: [1, 1, 2, 1, 2, 2] },
+      h2: { cx: 500, cy: 265, rx: 150, ry: 110, count: 6, tiers: [1, 2, 1, 2, 2, 1] },
+      h3: { cx: 370, cy: 460, rx: 150, ry: 110, count: 6, tiers: [1, 1, 2, 2, 1, 2] },
+      h4: { cx: 480, cy: 650, rx: 150, ry: 110, count: 6, tiers: [1, 2, 1, 2, 2, 1] },
+      h5: { cx: 360, cy: 830, rx: 140, ry: 90,  count: 5, tiers: [1, 2, 1, 2, 2] }
+    };
+
+    var clusters = isMobile ? mobileClusters : desktopClusters;
+    var fillConfig = isMobile ? mobileFill : desktopFill;
     clusters.forEach(function (cluster, ci) {
-      var fill = clusterFill[cluster.name];
+      var fill = fillConfig[cluster.name];
       if (!fill) return;
       cluster.nodes = cluster.nodes.concat(
         goldenScatter(ci + 1, fill.cx, fill.cy, fill.rx, fill.ry, fill.count, fill.tiers)
@@ -1221,27 +1281,27 @@
     }, 0);
 
     // Hand-picked cross-cluster backbone bridges -- the sparser, more visible
-    // "important junction" paths signals travel along.
+    // "important junction" paths signals travel along. Mobile's hub chain
+    // (h1-h2-h3-h4-h5) is what makes the composition read as one connected
+    // graph running down the portrait viewport, rather than several
+    // unrelated local clusters.
     var offsets = {}; (function () {
       var o = 0; clusters.forEach(function (c) { offsets[c.name] = o; o += c.nodes.length; });
     })();
-    var bridges = [
-      [offsets.a + 3, offsets.b + 1], [offsets.b + 2, offsets.c + 2],
-      [offsets.c + 1, offsets.d + 0], [offsets.a + 4, offsets.bridge + 0],
-      [offsets.b + 4, offsets.bridge + 2], [offsets.c + 3, offsets.bridge + 4],
-      [offsets.bridge + 0, offsets.bridge + 5], [offsets.a + 8, offsets.bridge + 6],
-      [offsets.c + 8, offsets.d + 6],
-      [offsets.a + 11, offsets.bridge + 10], [offsets.c + 11, offsets.d + 10]
-    ];
+    var bridges = isMobile
+      ? [
+          [offsets.h1, offsets.h2], [offsets.h2, offsets.h3],
+          [offsets.h3, offsets.h4], [offsets.h4, offsets.h5]
+        ]
+      : [
+          [offsets.a + 3, offsets.b + 1], [offsets.b + 2, offsets.c + 2],
+          [offsets.c + 1, offsets.d + 0], [offsets.a + 4, offsets.bridge + 0],
+          [offsets.b + 4, offsets.bridge + 2], [offsets.c + 3, offsets.bridge + 4],
+          [offsets.bridge + 0, offsets.bridge + 5], [offsets.a + 8, offsets.bridge + 6],
+          [offsets.c + 8, offsets.d + 6],
+          [offsets.a + 11, offsets.bridge + 10], [offsets.c + 11, offsets.d + 10]
+        ];
     bridges.forEach(function (pair) { addLink(pair[0], pair[1], true); });
-
-    if (isMobile) {
-      // Lighter mobile pass: keep tier-0/1 nodes and only backbone links, drop
-      // the dense tertiary mesh entirely for clarity and performance.
-      var keep = {};
-      nodes.forEach(function (n, i) { if (n.tier < 2) keep[i] = true; });
-      links = links.filter(function (l) { return l.backbone || (keep[l.a] && keep[l.b]); });
-    }
 
     // Draw links first (beneath nodes). Backbone links get brand color + more
     // opacity; the rest stay faint and mostly neutral for depth.
@@ -1267,7 +1327,6 @@
     var TIER_OPACITY = [0.95, 0.68, 0.36];
 
     nodes.forEach(function (n, i) {
-      if (isMobile && n.tier === 2) return;
       var color = COLORS[i % 3];
       var group = document.createElementNS(ns, "g");
       if (!prefersReduced && n.tier < 2) {
@@ -1305,8 +1364,10 @@
     // nearby nodes brighten together on a long, slow period, distinct from
     // each node's own individual pulse. Reads as "something happened over
     // there" rather than constant uniform motion.
-    if (!prefersReduced && !isMobile) {
-      var activityGroup = [offsets.d + 1, offsets.d + 2, offsets.d + 5, offsets.d + 6];
+    if (!prefersReduced) {
+      var activityGroup = isMobile
+        ? [offsets.h3 + 1, offsets.h3 + 2, offsets.h3 + 4]
+        : [offsets.d + 1, offsets.d + 2, offsets.d + 5, offsets.d + 6];
       activityGroup.forEach(function (idx) {
         var node = document.getElementById("node" + idx);
         if (!node) return;
@@ -1327,7 +1388,7 @@
     // delayed pulse, not a literal event trigger, to keep this dependency-free).
     if (!prefersReduced) {
       var signalPaths = isMobile
-        ? [[offsets.a + 3, offsets.b + 1], [offsets.b + 2, offsets.c + 2]]
+        ? [[offsets.h1, offsets.h2], [offsets.h2, offsets.h3], [offsets.h3, offsets.h4]]
         : [
             [offsets.a + 3, offsets.b + 1, offsets.b + 2],
             [offsets.b + 2, offsets.c + 2, offsets.c + 3],
